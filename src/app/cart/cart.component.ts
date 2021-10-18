@@ -18,10 +18,12 @@ export class CartComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('生命周期初使化。。。');
+  }
   onSubmit(): void {
     this.items = this.cartService.clearCart();
-    console.warn('Your order has been submitted', this.checkoutForm.value);
+    console.warn('您的订单已提交', this.checkoutForm.value);
     this.checkoutForm.reset();
   }
 }

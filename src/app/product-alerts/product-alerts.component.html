@@ -1,3 +1,6 @@
 <p *ngIf="product.price > 700">
   <button (click)="notify.emit()">Notify Me</button>
 </p>
+<button (click)="btn($event.target)">测试BTN</button>
+<br />
+<input type="text" name="" id="" (input)="btn($event)" />
