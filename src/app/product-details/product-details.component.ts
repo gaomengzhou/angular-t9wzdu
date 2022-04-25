@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { Product, products } from '../products';
 import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: Product | undefined;
   constructor(
     private route: ActivatedRoute,
@@ -16,12 +16,19 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(products);
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
-    this.product = products.find((item) => item.id === productIdFromRoute);
+    this.product = products.find(
+      (product) => product.id === productIdFromRoute
+    );
   }
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
+  }
+
+  ngOnDestroy() {
+    console.log('886');
   }
 }
